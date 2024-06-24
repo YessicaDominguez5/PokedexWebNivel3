@@ -1,0 +1,6 @@
+C:\Users\Juaniyeppi\Documents\Nivel3MaxiPrograma\PokedexNivel3\ejemplos-ado-net\dominio\bin\Debug\dominio.dll
+C:\Users\Juaniyeppi\Documents\Nivel3MaxiPrograma\PokedexNivel3\ejemplos-ado-net\dominio\bin\Debug\dominio.pdb
+C:\Users\Juaniyeppi\Documents\Nivel3MaxiPrograma\PokedexNivel3\ejemplos-ado-net\dominio\obj\Debug\dominio.csproj.AssemblyReference.cache
+C:\Users\Juaniyeppi\Documents\Nivel3MaxiPrograma\PokedexNivel3\ejemplos-ado-net\dominio\obj\Debug\dominio.csproj.CoreCompileInputs.cache
+C:\Users\Juaniyeppi\Documents\Nivel3MaxiPrograma\PokedexNivel3\ejemplos-ado-net\dominio\obj\Debug\dominio.dll
+C:\Users\Juaniyeppi\Documents\Nivel3MaxiPrograma\PokedexNivel3\ejemplos-ado-net\dominio\obj\Debug\dominio.pdb
