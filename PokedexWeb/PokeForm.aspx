@@ -35,15 +35,19 @@
                 <label for="ddlDebilidad" class="form-label">DEBILIDAD</label>
                 <asp:DropDownList ID="ddlDebilidad" CssClass="form-select" runat="server"></asp:DropDownList>
             </div>
-
-        </div>
-
-        <div class="col-6">
-
             <div class="mb-3">
                 <label for="txtDescripcion" class="form-label">DESCRIPCIÓN</label>
                 <asp:TextBox ID="txtDescripcion" TextMode="MultiLine" CssClass="form-control" runat="server"></asp:TextBox>
             </div>
+
+            <div>
+            <asp:Button ID="btnAceptar" OnClick="btnAceptar_Click" CssClass="btn btn-primary" runat="server" Text="ACEPTAR" />
+            <a href="ListaPokemon.aspx" class="btn btn-secondary">CANCELAR</a>
+            </div>
+        </div>
+
+        <div class="col-6">
+
 
             <asp:ScriptManager ID="scriptManager1" runat="server"></asp:ScriptManager>
             <asp:UpdatePanel runat="server">
@@ -52,15 +56,13 @@
 
                     <div class="mb-3">
                         <label for="txtUrl" class="form-label">URL IMAGEN</label>
-                        <asp:TextBox ID="txtUrl" CssClass="form-control" OnTextChanged="txtUrl_TextChanged" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtUrl" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtUrl_TextChanged" runat="server"></asp:TextBox>
                     </div>
 
                     <asp:Image ID="imgPokemon" ImageUrl="https://static.wikia.nocookie.net/espokemon/images/7/77/Pikachu.png/revision/latest?cb=20150621181250" Width="60%" runat="server" />
                     <div>
                 </ContentTemplate>
             </asp:UpdatePanel>
-            <asp:Button ID="btnAceptar" OnClick="btnAceptar_Click" CssClass="btn btn-primary" runat="server" Text="ACEPTAR" />
-            <a href="ListaPokemon.aspx" class="btn btn-secondary">CANCELAR</a>
 
         </div>
 

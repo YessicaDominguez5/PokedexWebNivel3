@@ -13,30 +13,81 @@ namespace PokedexWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["id"] != null)
+            txtId.Enabled = false;
+
+            try
             {
-                int id = int.Parse(Request.QueryString["id"]);
+                //configuración inicial
+                if (!IsPostBack)
+                {
+                    ElementoNegocio negocioElemento = new ElementoNegocio();
+                    List<Elemento> listaDeElementos = negocioElemento.listar();
 
-                PokemonNegocio negocio = new PokemonNegocio();
-                List<Pokemon> temporal = negocio.listarConSP();
-                Pokemon seleccionado = temporal.Find(x => x.Id == id);
+                    ddlTipo.DataSource = listaDeElementos;
+                    ddlTipo.DataValueField = "Id";
+                    ddlTipo.DataTextField = "Descripcion";
+                    ddlTipo.DataBind();
 
-                txtId.Text = seleccionado.Id.ToString();
-                txtId.ReadOnly = true;
-                txtNumero.Text = seleccionado.Numero.ToString();
-                txtNombre.Text = seleccionado.Nombre;
-                txtDescripcion.Text = seleccionado.Descripcion;
+                    ddlDebilidad.DataSource = listaDeElementos;
+                    ddlDebilidad.DataValueField = "Id";
+                    ddlDebilidad.DataTextField = "Descripcion";
+                    ddlDebilidad.DataBind();
 
- 
+                }
+                //configuración si estamos modificando
+
+                string id = Request.QueryString["id"];
+
+                if (id != null && !IsPostBack)
+                {
+                    PokemonNegocio negocio = new PokemonNegocio();
+
+                    List<Pokemon> lista = negocio.listar(id);
+
+                    Pokemon seleccionado = lista[0];
+
+                    txtId.Text = id;
+                    txtNumero.Text = seleccionado.Numero.ToString();
+                    txtNombre.Text = seleccionado.Nombre;
+                    txtDescripcion.Text = seleccionado.Descripcion;
+                    txtUrl.Text = seleccionado.UrlImagen;
+                    ddlTipo.SelectedValue = seleccionado.Tipo.Id.ToString();
+                    ddlDebilidad.SelectedValue = seleccionado.Debilidad.Id.ToString();
+
+                    imgPokemon.ImageUrl = txtUrl.Text; //que la imagen aparezca cargada en el modificar sin esperar al text changed
+
+                }
+
+
 
             }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
 
-            ElementoNegocio negocioElemento = new ElementoNegocio();
+                Response.Redirect("error.aspx");
+                //throw;
+            }
 
-            ddlTipo.DataSource = negocioElemento.listar();
-            ddlTipo.DataBind();
-            ddlDebilidad.DataSource = negocioElemento.listar();
-            ddlDebilidad.DataBind();
+            //Asi se hace cuando se guarda en Session
+            //if (Request.QueryString["id"] != null)
+            //{
+            //    int id = int.Parse(Request.QueryString["id"]);
+
+            //    PokemonNegocio negocio = new PokemonNegocio();
+            //    List<Pokemon> temporal = negocio.listarConSP();
+            //    Pokemon seleccionado = temporal.Find(x => x.Id == id);
+
+            //    txtId.Text = seleccionado.Id.ToString();
+            //    txtId.ReadOnly = true;
+            //    txtNumero.Text = seleccionado.Numero.ToString();
+            //    txtNombre.Text = seleccionado.Nombre;
+            //    txtDescripcion.Text = seleccionado.Descripcion;
+
+
+
+            //}
+
 
 
 
@@ -44,16 +95,46 @@ namespace PokedexWeb
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            Pokemon poke= new Pokemon();
+            try
+            {
 
-            poke.Id = int.Parse(txtId.Text);
-            poke.Numero = int.Parse(txtNumero.Text);
-            poke.Nombre = txtNombre.Text;
-            poke.Descripcion = txtDescripcion.Text;
-            poke.Tipo.Descripcion = ddlTipo.SelectedValue;
-            poke.Debilidad.Descripcion = ddlDebilidad.SelectedValue; 
-            
+                Pokemon poke = new Pokemon();
+                PokemonNegocio negocio = new PokemonNegocio();
 
+                poke.Numero = int.Parse(txtNumero.Text);
+                poke.Nombre = txtNombre.Text;
+                poke.Descripcion = txtDescripcion.Text;
+                poke.UrlImagen = txtUrl.Text;
+
+                poke.Tipo = new Elemento();
+                poke.Tipo.Id = int.Parse(ddlTipo.SelectedValue);
+
+                poke.Debilidad = new Elemento();
+                poke.Debilidad.Id = int.Parse(ddlDebilidad.SelectedValue);
+                
+               
+                if (Request.QueryString["id"] != null)
+                {
+                    poke.Id = int.Parse(txtId.Text);
+                    negocio.modificarConSP(poke);
+
+
+                }
+                else
+                {
+                    negocio.agregarConSP(poke);
+                }
+
+               
+                Response.Redirect("ListaPokemon.aspx", false);
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+
+                Response.Redirect("error.aspx");
+            }
         }
 
         protected void txtUrl_TextChanged(object sender, EventArgs e)
