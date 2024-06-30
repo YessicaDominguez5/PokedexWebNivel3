@@ -310,6 +310,26 @@ namespace negocio
             }
         }
 
+        public void eliminarConSP(int id)
+        {
+
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearProcedimiento("StoredEliminar");
+                datos.setearParametro("@id", id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+
+        }
+
         public void eliminarLogico(int id)
         {
             try

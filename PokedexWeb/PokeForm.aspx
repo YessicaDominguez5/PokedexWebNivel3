@@ -35,24 +35,24 @@
                 <label for="ddlDebilidad" class="form-label">DEBILIDAD</label>
                 <asp:DropDownList ID="ddlDebilidad" CssClass="form-select" runat="server"></asp:DropDownList>
             </div>
-            <div class="mb-3">
-                <label for="txtDescripcion" class="form-label">DESCRIPCIÓN</label>
-                <asp:TextBox ID="txtDescripcion" TextMode="MultiLine" CssClass="form-control" runat="server"></asp:TextBox>
-            </div>
 
             <div>
-            <asp:Button ID="btnAceptar" OnClick="btnAceptar_Click" CssClass="btn btn-primary" runat="server" Text="ACEPTAR" />
-            <a href="ListaPokemon.aspx" class="btn btn-secondary">CANCELAR</a>
+                <asp:Button ID="btnAceptar" OnClick="btnAceptar_Click" CssClass="btn btn-primary" runat="server" Text="ACEPTAR" />
+                <a href="ListaPokemon.aspx" class="btn btn-secondary">CANCELAR</a>
             </div>
         </div>
 
         <div class="col-6">
 
+            <div class="mb-3">
+                <label for="txtDescripcion" class="form-label">DESCRIPCIÓN</label>
+                <asp:TextBox ID="txtDescripcion" TextMode="MultiLine" CssClass="form-control" runat="server"></asp:TextBox>
+            </div>
 
             <asp:ScriptManager ID="scriptManager1" runat="server"></asp:ScriptManager>
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
-                    
+
 
                     <div class="mb-3">
                         <label for="txtUrl" class="form-label">URL IMAGEN</label>
@@ -66,14 +66,33 @@
 
         </div>
 
-
-
-
     </div>
+    <div class="row">
+        <div class="col-6">
+  
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+             <ContentTemplate>     
+            <%if(Modificar)
+              {%>
+
+            <div class="mb-3">
+                <asp:Button ID="btnEliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" runat="server" Text="ELIMINAR" />
+            </div>
+            <%}%>
+
+            <%if (ConfirmarEliminar) { %>
+            <div class="mb-3">
+                <asp:CheckBox ID="cbEliminar" Text="Confirmar Eliminación" runat="server" />
+                <asp:Button ID="btnConfirmarEliminar" CssClass="btn btn-outline-danger" Onclick="btnConfirmarEliminar_Click" runat="server" Text="ELIMINAR" />
+            </div>
+            <%}%>
+
+            </ContentTemplate>
+
+           </asp:UpdatePanel>
+
+        </div>
     </div>
-
-
-    <br />
 
 </asp:Content>
 

@@ -11,9 +11,13 @@ namespace PokedexWeb
 {
     public partial class PokeForm : System.Web.UI.Page
     {
+        public bool ConfirmarEliminar { get; set; }
+        public bool Modificar { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             txtId.Enabled = false;
+            ConfirmarEliminar = false;
+            Modificar = false;
 
             try
             {
@@ -40,6 +44,7 @@ namespace PokedexWeb
 
                 if (id != null && !IsPostBack)
                 {
+                    Modificar = true;
                     PokemonNegocio negocio = new PokemonNegocio();
 
                     List<Pokemon> lista = negocio.listar(id);
@@ -95,6 +100,7 @@ namespace PokedexWeb
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+           
             try
             {
 
@@ -140,6 +146,37 @@ namespace PokedexWeb
         protected void txtUrl_TextChanged(object sender, EventArgs e)
         {
             imgPokemon.ImageUrl = txtUrl.Text;
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ConfirmarEliminar = true;
+        }
+
+        protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(cbEliminar.Checked)
+                {
+                    PokemonNegocio negocio = new PokemonNegocio();
+                    negocio.eliminarConSP(int.Parse(txtId.Text));
+                    Response.Redirect("ListaPokemon.aspx", false);
+
+                }
+                else
+                {
+                    Response.Redirect("ListaPokemon.aspx", false);
+                }
+               
+
+
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex);
+            }
         }
     }
 }
