@@ -77,6 +77,8 @@
 
             <div class="mb-3">
                 <asp:Button ID="btnEliminar" CssClass="btn btn-danger" OnClick="btnEliminar_Click" runat="server" Text="ELIMINAR" />
+                <asp:Button ID="btnDesactivar" runat="server" Text="DESACTIVAR" OnClick="btnDesactivar_Click" CssClass="btn btn-warning" />
+
             </div>
             <%}%>
 
