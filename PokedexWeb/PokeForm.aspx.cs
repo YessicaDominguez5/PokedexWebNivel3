@@ -51,6 +51,8 @@ namespace PokedexWeb
 
                     Pokemon seleccionado = lista[0];
 
+                    Session.Add("pokeSeleccionado", seleccionado);
+
                     txtId.Text = id;
                     txtNumero.Text = seleccionado.Numero.ToString();
                     txtNombre.Text = seleccionado.Nombre;
@@ -60,6 +62,12 @@ namespace PokedexWeb
                     ddlDebilidad.SelectedValue = seleccionado.Debilidad.Id.ToString();
 
                     imgPokemon.ImageUrl = txtUrl.Text; //que la imagen aparezca cargada en el modificar sin esperar al text changed
+
+                    if(!seleccionado.Activo)
+                    {
+                        btnDesactivar.Text = "REACTIVAR";
+
+                    }
 
                 }
 
@@ -184,8 +192,10 @@ namespace PokedexWeb
             try
             {
             PokemonNegocio negocio = new PokemonNegocio();
+                Pokemon seleccionado = (Pokemon)Session["pokeSeleccionado"];
 
-                negocio.eliminarLogicoConSP(int.Parse(txtId.Text));
+                negocio.eliminarLogico(seleccionado.Id, !seleccionado.Activo);
+                //Esta negado porque si esta inactivo lo quiero activar, y si esta activo lo quiero inactivar
                 Response.Redirect("ListaPokemon.aspx",false);
             }
             catch (Exception ex)

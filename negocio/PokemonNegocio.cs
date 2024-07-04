@@ -54,6 +54,7 @@ namespace negocio
                     aux.Debilidad = new Elemento();
                     aux.Debilidad.Id = (int)lector["IdDebilidad"];
                     aux.Debilidad.Descripcion = (string)lector["Debilidad"];
+                    aux.Activo = bool.Parse(lector["Activo"].ToString());
 
                     lista.Add(aux);
                 }
@@ -331,13 +332,14 @@ namespace negocio
 
         }
 
-        public void eliminarLogico(int id)
+        public void eliminarLogico(int id, bool activo = false)
         {
             try
             {
                 AccesoDatos datos = new AccesoDatos();
-                datos.setearConsulta("update POKEMONS set Activo = 0 Where id = @id");
+                datos.setearConsulta("update POKEMONS set Activo = @activo Where id = @id");
                 datos.setearParametro("@id", id);
+                datos.setearParametro("@activo", activo);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
