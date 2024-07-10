@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/.vs/PokedexWebNivel3/v17/DocumentLayout.json
+/.vs/PokedexWebNivel3/v17/.suo
+/.vs/PokedexWebNivel3/FileContentIndex/bab45615-27be-4b0d-a7e4-56a25cbe9692.vsidx
