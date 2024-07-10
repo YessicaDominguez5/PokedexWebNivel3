@@ -54,6 +54,8 @@ namespace PokedexWeb
             txtFiltroRapido.Enabled = !FiltroAvanzado;
             if (FiltroAvanzado)
             {
+                // Forzamos el metodo selected index changed cuando 
+                // apretamos en el check de filtro avanzado
                 ddlCampo_SelectedIndexChanged(sender, e);
             }
         }
