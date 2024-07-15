@@ -14,6 +14,15 @@ namespace PokedexWeb
         public bool FiltroAvanzado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            if (Session["usuario"] == null)
+            {
+                Session.Add("error", "Debes loguearte para ingresar");
+                Response.Redirect("error.aspx");
+
+            }
+            else
+            {
             FiltroAvanzado = false;
 
             PokemonNegocio negocio = new PokemonNegocio();
@@ -22,6 +31,8 @@ namespace PokedexWeb
 
             dgvPokemon.DataSource = Session["listaPokemon"];
             dgvPokemon.DataBind();
+
+            }
 
             
         }

@@ -14,10 +14,20 @@ namespace PokedexWeb
         public List<Pokemon> ListaPokemon { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            PokemonNegocio negocio = new PokemonNegocio();
+            if (Session["usuario"] == null)
+            {
+                Session.Add("error", "Debes loguearte para ingresar");
+                Response.Redirect("error.aspx");
 
-            ListaPokemon = negocio.listarConSP();
+            }
+            else
+            {
 
+                PokemonNegocio negocio = new PokemonNegocio();
+
+                ListaPokemon = negocio.listarConSP();
+
+            }
 
         }
     }

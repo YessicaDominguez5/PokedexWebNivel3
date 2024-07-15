@@ -15,6 +15,14 @@ namespace PokedexWeb
         public bool Modificar { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["usuario"] == null)
+            {
+                Session.Add("error", "Debes loguearte para ingresar");
+                Response.Redirect("error.aspx");
+
+            }
+            else
+            {
             txtId.Enabled = false;
             ConfirmarEliminar = false;
             Modificar = false;
@@ -102,6 +110,8 @@ namespace PokedexWeb
             //}
 
 
+
+            }
 
 
         }

@@ -13,5 +13,16 @@ namespace PokedexWeb
         {
 
         }
+
+        protected void Unnamed_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnDesLoguearse_Click(object sender, EventArgs e)
+        {
+            Session.Remove("usuario");
+            Response.Redirect("Login.aspx");
+        }
     }
 }
