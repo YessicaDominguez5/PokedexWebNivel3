@@ -31,6 +31,10 @@
                          <li class="nav-item">
                         <a class="nav-link" href="Login.aspx">Login</a>
                         </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="EnvioEmail.aspx">Envío Email</a>
+                        </li>
+
                         <li>
                             <asp:Button ID="btnDesLoguearse" runat="server" CssClass="btn btn-dark" OnClick="btnDesLoguearse_Click" Text="Desloguearse" />
                         </li>
