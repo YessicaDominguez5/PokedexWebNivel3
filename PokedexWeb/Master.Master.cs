@@ -12,7 +12,7 @@ namespace PokedexWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!(Page is Login || Page is Registrarse))
+            if(!(Page is Login || Page is Registrarse || Page is Default))
             {
                 if (!Seguridad.SessionActiva(Session["trainee"]))
                 {

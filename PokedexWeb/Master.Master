@@ -37,19 +37,23 @@
                         <li class="nav-item">
                         <a class="nav-link" href="MiPerfil.aspx">Mi Perfil</a>
                         </li>
+                        <%if (!negocio.Seguridad.SessionActiva(Session["trainee"]))
+                            {%>
                         <li class="nav-item">
                         <a class="nav-link" CssClass="btn btn-dark" href="Login.aspx">Login</a>
                         </li>
+                        <%}%>
                     </ul>
                                               
                 </div>
             </div>
                            
-
+            <%if (!negocio.Seguridad.SessionActiva(Session["trainee"]))
+                {%>
          <asp:Button ID="btnRegistrarse" runat="server" style="margin-right:15px" CssClass="btn btn-outline-primary" OnClick="btnRegistrarse_Click" Text="Registrarse"/>
-
+            <%}else{%>
          <asp:Button ID="btnDesLoguearse" runat="server" style="margin-right:15px" CssClass="btn btn-outline-danger" OnClick="btnDesLoguearse_Click" Text="Desloguearse" />
-                            
+          <%} %>                  
         </nav>
 
         <div class="container">
