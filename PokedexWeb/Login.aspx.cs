@@ -18,32 +18,29 @@ namespace PokedexWeb
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            Usuario usuario = new Usuario();
-            UsuarioNegocio negocio = new UsuarioNegocio();
-
-            try 
+            Trainee trainee = new Trainee();
+            TraineeNegocio negocio = new TraineeNegocio();
+            try
             {
-                usuario.User = txtUser.Text;
-                usuario.Pass = txtPass.Text;
-
-                if(negocio.Loguear(usuario))
+                trainee.Email = txtUser.Text;
+                trainee.Pass = txtPass.Text;
+                if(negocio.Login(trainee) )
                 {
-                    Session.Add("usuario",usuario);
-                    Response.Redirect("MenuLogin.aspx",false);
+                    Session.Add("trainee", trainee);
+                    Response.Redirect("MiPerfil.aspx",false);
                 }else
                 {
-                    Session.Add("error", "User o Password incorrectos");
-                    Response.Redirect("error.aspx");
+                    Session.Add("error", "User o password incorrectos");
+                    Response.Redirect("error.aspx", false);
                 }
 
-                //si el usuario existe lo gurdo en session para que pueda acceder a las otras páginas, si el usuario es null debería dirigirme al login y no poder acceder a las páginas hasta que me loguee
-            
-            } 
-            catch (Exception ex) 
-            {
-                Session.Add("error", ex);
-                Response.Redirect("error.aspx");
             }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex.ToString());
+                Response.Redirect("error.aspx");
+
+            } 
         }
     }
 }

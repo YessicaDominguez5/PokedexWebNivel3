@@ -28,19 +28,28 @@
                         <li class="nav-item">
                         <a class="nav-link" href="PokeForm.aspx">Formulario</a>
                         </li>
-                         <li class="nav-item">
-                        <a class="nav-link" href="Login.aspx">Login</a>
-                        </li>
                         <li class="nav-item">
                         <a class="nav-link" href="EnvioEmail.aspx">Envío Email</a>
                         </li>
-
-                        <li>
-                            <asp:Button ID="btnDesLoguearse" runat="server" CssClass="btn btn-dark" OnClick="btnDesLoguearse_Click" Text="Desloguearse" />
+                        <li class="nav-item">
+                        <a class="nav-link" href="Favoritos.aspx">Favoritos</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="MiPerfil.aspx">Mi Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" CssClass="btn btn-dark" href="Login.aspx">Login</a>
                         </li>
                     </ul>
+                                              
                 </div>
             </div>
+                           
+
+         <asp:Button ID="btnRegistrarse" runat="server" style="margin-right:15px" CssClass="btn btn-outline-primary" OnClick="btnRegistrarse_Click" Text="Registrarse"/>
+
+         <asp:Button ID="btnDesLoguearse" runat="server" style="margin-right:15px" CssClass="btn btn-outline-danger" OnClick="btnDesLoguearse_Click" Text="Desloguearse" />
+                            
         </nav>
 
         <div class="container">

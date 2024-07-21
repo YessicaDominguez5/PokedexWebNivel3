@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace PokedexWeb
 {
-    public partial class Pagina1 : System.Web.UI.Page
+    public partial class Favoritos : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

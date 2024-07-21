@@ -1,4 +1,5 @@
-﻿using System;
+﻿using negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,13 +12,25 @@ namespace PokedexWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["usuario"] == null)
+           
+
+        }
+
+        protected void btnEnvioEmail_Click(object sender, EventArgs e)
+        {
+            EmailService emailService = new EmailService();
+            emailService.ArmarCorreo(txtEmail.Text,txtAsunto.Text,txtMensaje.Text);
+            try
             {
-                Session.Add("error", "Debes loguearte para ingresar");
-                Response.Redirect("error.aspx");
+                emailService.EnviarEmail();
 
             }
+            catch (Exception ex)
+            {
 
+                Session.Add("error", ex);
+                Response.Redirect("error.aspx", false);
+            }
         }
     }
 }

@@ -31,7 +31,7 @@
 
             </div>
 
-            <asp:Button ID="btnEnvioEmail" CssClass="btn btn-primary" runat="server" Text="Aceptar" />
+            <asp:Button ID="btnEnvioEmail" OnClick="btnEnvioEmail_Click" CssClass="btn btn-primary" runat="server" Text="Aceptar" />
 
 
         </div>
