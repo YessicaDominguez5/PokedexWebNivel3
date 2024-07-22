@@ -77,8 +77,6 @@
     <Content Include="Login.aspx" />
     <Content Include="MenuLogin.aspx" />
     <Content Include="MiPerfil.aspx" />
-    <Content Include="Pagina1.aspx" />
-    <Content Include="Pagina2.aspx" />
     <Content Include="PokeForm.aspx" />
     <Content Include="Registrarse.aspx" />
     <Content Include="Web.config" />
@@ -156,20 +154,6 @@
     </Compile>
     <Compile Include="MiPerfil.aspx.designer.cs">
       <DependentUpon>MiPerfil.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pagina1.aspx.cs">
-      <DependentUpon>Pagina1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pagina1.aspx.designer.cs">
-      <DependentUpon>Pagina1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pagina2.aspx.cs">
-      <DependentUpon>Pagina2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pagina2.aspx.designer.cs">
-      <DependentUpon>Pagina2.aspx</DependentUpon>
     </Compile>
     <Compile Include="PokeForm.aspx.cs">
       <DependentUpon>PokeForm.aspx</DependentUpon>

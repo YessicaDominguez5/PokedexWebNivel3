@@ -26,7 +26,8 @@ namespace PokedexWeb
 
         protected void btnDesLoguearse_Click(object sender, EventArgs e)
         {
-            Session.Remove("trainee");
+            Session.Clear(); //borra toda la session
+            //Session.Remove("trainee"); borra solo el objeto trainee
             Response.Redirect("Login.aspx");
         }
 

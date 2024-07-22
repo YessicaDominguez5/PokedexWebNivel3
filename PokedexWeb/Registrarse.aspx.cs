@@ -25,7 +25,9 @@ namespace PokedexWeb
                 EmailService emailService = new EmailService();
                 user.Email = txtEmailRegistrarse.Text;
                 user.Pass = txtPassResistrarse.Text;
-                int id = negocio.InsertarNuevo(user);
+                user.Id = negocio.InsertarNuevo(user);
+                Session.Add("trainee", user); //AutoLogin cuando te registras queda abierta la session, no te tenes que volver a loguears
+
                 emailService.ArmarCorreo(user.Email, "Bienvenida Trainee", "Hola! Te damos la bienvenida a la aplicación");
                 emailService.EnviarEmail();
                 Response.Redirect("Default.aspx", false);
