@@ -1,4 +1,5 @@
 ﻿using dominio;
+using negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,17 +13,25 @@ namespace PokedexWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Trainee trainee = (Trainee)Session["trainee"];
+            if(trainee != null)
+            {
+                txtEmailPerfil.Text = trainee.Email.ToString();
+                txtEmailPerfil.Enabled = false;
+            }
         }
 
         protected void btnGuardarPerfil_Click(object sender, EventArgs e)
         {
             try
             {
+                TraineeNegocio negocio = new TraineeNegocio();
                 string ruta = Server.MapPath("./Imagenes/");
 
                 Trainee user = (Trainee)Session["trainee"];
                 txtImagenPerfil.PostedFile.SaveAs(ruta + "perfil-" + user.Id + ".jpg");
+
+                negocio.actualizar(user);
 
             }
             catch (Exception ex)

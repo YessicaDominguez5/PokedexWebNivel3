@@ -9,6 +9,21 @@ namespace negocio
 {
     public class TraineeNegocio
     {
+        public void actualizar(Trainee user)
+        {
+            try
+            {
+                AccesoDatos datos = new AccesoDatos();
+                datos.setearConsulta("");
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+         
+        }
+
         public int InsertarNuevo(Trainee nuevo)
         {
                 AccesoDatos datos = new AccesoDatos();

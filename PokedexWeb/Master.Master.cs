@@ -12,10 +12,9 @@ namespace PokedexWeb
             {
                 if (!Seguridad.SessionActiva(Session["trainee"]))
                 {
-                    Response.Redirect("Login.aspx", false);
+                    Response.Redirect("Login.aspx");
                 }
             }
-
         }
 
         protected void btnDesLoguearse_Click(object sender, EventArgs e)
