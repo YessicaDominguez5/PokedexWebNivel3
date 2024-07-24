@@ -29,9 +29,19 @@ namespace PokedexWeb
                 string ruta = Server.MapPath("./Imagenes/");
 
                 Trainee user = (Trainee)Session["trainee"];
-                txtImagenPerfil.PostedFile.SaveAs(ruta + "perfil-" + user.Id + ".jpg");
+
+                user.ImagenPerfil = "perfil-" + user.Id + ".jpg";
+                txtImagenPerfil.PostedFile.SaveAs(ruta + user.ImagenPerfil);
+                user.Email = txtEmailPerfil.Text;
+                user.Nombre = txtNombrePerfil.Text;
+                user.Apellido = txtApellidoPerfil.Text;
+                user.FechaDeNacimiento = DateTime.Parse(txtFechaNacimientoPerfil.Text);
+
 
                 negocio.actualizar(user);
+
+                Image img = (Image)Master.FindControl("imgAvatar");
+                img.ImageUrl = "~/Imagenes/" + user.ImagenPerfil;
 
             }
             catch (Exception ex)

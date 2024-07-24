@@ -11,15 +11,22 @@ namespace negocio
     {
         public void actualizar(Trainee user)
         {
+            AccesoDatos datos = new AccesoDatos(); //afuera del try sino no agarra el finally
             try
             {
-                AccesoDatos datos = new AccesoDatos();
-                datos.setearConsulta("");
+                datos.setearConsulta("Update USERS set ImagenPerfil = @imagen where Id = @id");
+                datos.setearParametro("@imagen", user.ImagenPerfil);
+                datos.setearParametro("id",user.Id);
+                datos.ejecutarAccion();
             }
             catch (Exception ex)
             {
 
                 throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
          
         }

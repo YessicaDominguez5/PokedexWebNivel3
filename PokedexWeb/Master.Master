@@ -57,7 +57,7 @@
                 {%>
          <asp:Button ID="btnDesLoguearse" runat="server" style="margin-right:15px" CssClass="btn btn-outline-danger" OnClick="btnDesLoguearse_Click" Text="Desloguearse" />
           <%} %>   
-            <asp:Image ID="imgPerfil" style="border-radius: 50%; height:75px; " src="https://i.pinimg.com/550x/a8/0e/36/a80e3690318c08114011145fdcfa3ddb.jpg" runat="server" />
+            <asp:Image ID="imgAvatar" style="border-radius: 50%; height:75px;" runat="server" />
         </nav>
 
         <div class="container">
