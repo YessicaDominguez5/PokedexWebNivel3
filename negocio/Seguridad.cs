@@ -9,6 +9,11 @@ namespace negocio
 {
     public static class Seguridad
     {
+        /// <summary>
+        /// Metodo de la clase Seguridad para evaluar si hay un Trainee activo o si está null, devuelve falso
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>True si Trainee existe en session, false si es null</returns>
         public static bool SessionActiva(object user)
         {
             Trainee trainee = user != null ? (Trainee)user : null;
@@ -28,6 +33,7 @@ namespace negocio
 
 
         }
+
 
         public static bool esAdmin(object user)
         {

@@ -57,7 +57,7 @@
                 {%>
          <asp:Button ID="btnDesLoguearse" runat="server" style="margin-right:15px" CssClass="btn btn-outline-danger" OnClick="btnDesLoguearse_Click" Text="Desloguearse" />
           <%} %>   
-            <asp:Image ID="imgAvatar" style="border-radius: 50%; height:75px;" runat="server" />
+            <asp:Image ID="imgAvatar" ImageUrl="https://lh5.googleusercontent.com/proxy/9vqIPeIeHQHyGEo43DlSgD-DUtidieclv56O6UoAcYNGPXGNnZwFJL2V7oSodehCB1YT28jit7pMSVjNTnrBOnlBxW0CiRmOeH22FlPockzEbfdQPHLkDMPcgMwWdNfVHF1r2QpUk6W_aY_J87A9lFtYKMHf8_xhkMB7l_4=w1200-h630-p-k-no-nu" style="border-radius: 50%; height:40px; width:40px" runat="server" />
         </nav>
 
         <div class="container">

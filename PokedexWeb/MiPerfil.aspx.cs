@@ -1,23 +1,39 @@
 ﻿using dominio;
 using negocio;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace PokedexWeb
 {
-    public partial class MiPerfil : System.Web.UI.Page
+    public partial class MiPerfil : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Trainee trainee = (Trainee)Session["trainee"];
-            if(trainee != null)
+            if (!IsPostBack)
             {
-                txtEmailPerfil.Text = trainee.Email.ToString();
-                txtEmailPerfil.Enabled = false;
+                Trainee trainee = (Trainee)Session["trainee"];
+                if (Seguridad.SessionActiva(trainee))//si la session esta activa y el trainee no es null(lo resuelve en seguridad)
+                {
+                    TraineeNegocio traineeNegocio = new TraineeNegocio();
+                    txtEmailPerfil.Text = trainee.Email.ToString();
+                    txtEmailPerfil.Enabled = false;
+
+                    if (trainee.Nombre != null)
+                    {
+                        txtNombrePerfil.Text = trainee.Nombre.ToString();
+                    }
+                    if (trainee.Apellido != null)
+                    {
+                        txtApellidoPerfil.Text = trainee.Apellido.ToString();
+                    }
+
+
+                    if (!string.IsNullOrWhiteSpace(trainee.ImagenPerfil)) // Si la imagen de perfil no es vacía o nula, la cargo en el imagen perfil cargada
+                    {
+                        ImagenPerfilCargada.ImageUrl = traineeNegocio.ObtenerImagenPerfil(trainee);
+                    }
+                }
             }
         }
 
@@ -26,22 +42,39 @@ namespace PokedexWeb
             try
             {
                 TraineeNegocio negocio = new TraineeNegocio();
+
+                //Para Escribir
                 string ruta = Server.MapPath("./Imagenes/");
 
                 Trainee user = (Trainee)Session["trainee"];
 
-                user.ImagenPerfil = "perfil-" + user.Id + ".jpg";
-                txtImagenPerfil.PostedFile.SaveAs(ruta + user.ImagenPerfil);
+
+                if (!string.IsNullOrWhiteSpace(txtImagenPerfil.PostedFile.FileName))
+                {
+                    user.ImagenPerfil = "perfil-" + user.Id + ".jpg";//guardo el nombre de la imagen 
+                                                                 //user.ImagenPerfil = $"perfil-{user.Id}.jpg"; -> Interpolacion de string
+                    txtImagenPerfil.PostedFile.SaveAs(ruta + user.ImagenPerfil);
+                }
+
+
                 user.Email = txtEmailPerfil.Text;
                 user.Nombre = txtNombrePerfil.Text;
                 user.Apellido = txtApellidoPerfil.Text;
-                user.FechaDeNacimiento = DateTime.Parse(txtFechaNacimientoPerfil.Text);
+                if (!string.IsNullOrWhiteSpace(txtFechaNacimientoPerfil.Text))
+                {
+                    user.FechaDeNacimiento = DateTime.Parse(txtFechaNacimientoPerfil.Text);
+                }
 
 
-                negocio.actualizar(user);
+                negocio.actualizar(user); //manda a la base de datos el nombre de la imagen
 
-                Image img = (Image)Master.FindControl("imgAvatar");
+                //Para Leer
+
+                Image img = (Image)Master.FindControl("imgAvatar"); //llamar desde Mi Perfil a imgAvatar que esta en la Master(clase padre)
+
                 img.ImageUrl = "~/Imagenes/" + user.ImagenPerfil;
+
+                Response.Redirect("Default.aspx", false);
 
             }
             catch (Exception ex)
