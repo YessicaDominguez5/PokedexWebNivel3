@@ -49,11 +49,11 @@ namespace PokedexWeb
                 Trainee user = (Trainee)Session["trainee"];
 
 
-                if (!string.IsNullOrWhiteSpace(txtImagenPerfil.PostedFile.FileName))
+                if (!string.IsNullOrWhiteSpace(txtImagenPerfil.PostedFile.FileName)) // Si no selecciono nada, no modifico la imagen
                 {
                     user.ImagenPerfil = "perfil-" + user.Id + ".jpg";//guardo el nombre de la imagen 
                                                                  //user.ImagenPerfil = $"perfil-{user.Id}.jpg"; -> Interpolacion de string
-                    txtImagenPerfil.PostedFile.SaveAs(ruta + user.ImagenPerfil);
+                    txtImagenPerfil.PostedFile.SaveAs(ruta + user.ImagenPerfil); // Guarda la imagen en la ruta, con lo que esté cargado en el txt de imagen perfil
                 }
 
 
