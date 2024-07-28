@@ -25,19 +25,12 @@ namespace PokedexWeb
                 TraineeNegocio negocio = new TraineeNegocio();
                 string hayImagen= negocio.ObtenerImagenPerfil(sessionActiva);
 
-                if(!string.IsNullOrWhiteSpace(hayImagen))
-                {
+
                     imgAvatar.ImageUrl = hayImagen;
 
-                }
-
+           
             }
-            else
-            {
-                imgAvatar.ImageUrl = "https://lh5.googleusercontent.com/proxy/9vqIPeIeHQHyGEo43DlSgD-DUtidieclv56O6UoAcYNGPXGNnZwFJL2V7oSodehCB1YT28jit7pMSVjNTnrBOnlBxW0CiRmOeH22FlPockzEbfdQPHLkDMPcgMwWdNfVHF1r2QpUk6W_aY_J87A9lFtYKMHf8_xhkMB7l_4=w1200-h630-p-k-no-nu";
-
-            }
-
+            
         }
 
         protected void btnDesLoguearse_Click(object sender, EventArgs e)

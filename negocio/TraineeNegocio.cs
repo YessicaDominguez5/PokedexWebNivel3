@@ -72,14 +72,25 @@ namespace negocio
                 {
                     trainee.Id = (int)datos.Lector["Id"];
                     trainee.Admin = (bool)datos.Lector["Admin"];
-                    trainee.Nombre = (string)datos.Lector["Nombre"];
-                    trainee.Apellido = (string)datos.Lector["Apellido"];
+
+                    if (!(datos.Lector["Nombre"] is DBNull))
+                    {
+                        trainee.Nombre = (string)datos.Lector["Nombre"];
+
+                    }
+                    if (!(datos.Lector["Apellido"] is DBNull))
+                    {
+                        trainee.Apellido = (string)datos.Lector["Apellido"];
+
+                    }
 
                     if (!(datos.Lector["ImagenPerfil"] is DBNull))
                     {
                     trainee.ImagenPerfil = (string)datos.Lector["ImagenPerfil"];
 
-                    }//cuando recien te logueas y no tenes imagen de perfil la imagen es nula y te tira un error
+                    }
+               
+                    //cuando recien te logueas y no tenes imagen de perfil la imagen es nula y te tira un error
                     return true;
 
                 }
@@ -99,7 +110,19 @@ namespace negocio
 
         public string ObtenerImagenPerfil(Trainee trainee)
         {
-            return _directorioImagen + trainee.ImagenPerfil;
+            string imagen;
+
+            if(trainee.ImagenPerfil != null)
+            {
+                imagen = _directorioImagen + trainee.ImagenPerfil;
+            }
+            else
+            {
+                imagen = "https://lh5.googleusercontent.com/proxy/9vqIPeIeHQHyGEo43DlSgD-DUtidieclv56O6UoAcYNGPXGNnZwFJL2V7oSodehCB1YT28jit7pMSVjNTnrBOnlBxW0CiRmOeH22FlPockzEbfdQPHLkDMPcgMwWdNfVHF1r2QpUk6W_aY_J87A9lFtYKMHf8_xhkMB7l_4=w1200-h630-p-k-no-nu";
+            }
+
+            return imagen;
         }
+
     }
 }
