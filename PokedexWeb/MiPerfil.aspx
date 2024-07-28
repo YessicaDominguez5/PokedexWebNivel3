@@ -29,7 +29,7 @@
 
             <div class="mb-3">
                 <asp:Label ID="labelFechaNacimientoPerfil" CssClass="form-label" runat="server" Text="Fecha de Nacimiento"></asp:Label>
-                <asp:TextBox ID="txtFechaNacimientoPerfil" CssClass="form-control" TextMode="DateTime" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtFechaNacimientoPerfil" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox>
 
             </div>
             <asp:Button ID="btnGuardarPerfil" CssClass="btn btn-primary" OnClick="btnGuardarPerfil_Click" runat="server" Text="Guardar" />

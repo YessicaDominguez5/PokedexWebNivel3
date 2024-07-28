@@ -18,6 +18,10 @@ namespace PokedexWeb
                 {
                     Response.Redirect("Login.aspx");
                 }
+                //else
+                //{
+                //   laberUser.Text = sessionActiva.Email;
+                //}
             }
 
             if (Seguridad.SessionActiva(sessionActiva))
@@ -27,8 +31,9 @@ namespace PokedexWeb
 
 
                     imgAvatar.ImageUrl = hayImagen;
+                    laberUser.Text = sessionActiva.Email;
 
-           
+
             }
             
         }

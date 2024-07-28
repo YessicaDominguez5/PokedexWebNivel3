@@ -12,11 +12,12 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos(); //afuera del try sino no agarra el finally
             try
             {
-                datos.setearConsulta("Update USERS set ImagenPerfil = @imagen, Nombre = @nombre, Apellido = @apellido where Id = @id");
+                datos.setearConsulta("Update USERS set ImagenPerfil = @imagen, Nombre = @nombre, Apellido = @apellido, FechaNacimiento = @fecha where Id = @id");
                 datos.setearParametro("@imagen", user.ImagenPerfil);
                 datos.setearParametro("@nombre", user.Nombre);
                 datos.setearParametro("@apellido", user.Apellido);
-                datos.setearParametro("id", user.Id);
+                datos.setearParametro("@id", user.Id);
+                datos.setearParametro("@fecha", user.FechaDeNacimiento);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -63,7 +64,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("select Id,Email,Pass,Admin,Nombre,Apellido,ImagenPerfil from USERS where Email = @email And Pass = @pass");
+                datos.setearConsulta("select Id,Email,Pass,Admin,Nombre,Apellido,ImagenPerfil,FechaNacimiento from USERS where Email = @email And Pass = @pass");
                 datos.setearParametro("@email", trainee.Email);
                 datos.setearParametro("@pass", trainee.Pass);
                 datos.ejecutarLectura();
@@ -81,6 +82,11 @@ namespace negocio
                     if (!(datos.Lector["Apellido"] is DBNull))
                     {
                         trainee.Apellido = (string)datos.Lector["Apellido"];
+
+                    }
+                    if (!(datos.Lector["FechaNacimiento"] is DBNull))
+                    {
+                        trainee.FechaDeNacimiento = DateTime.Parse(datos.Lector["FechaNacimiento"].ToString()); //lo transformo primero a string porque es un object
 
                     }
 
@@ -112,7 +118,7 @@ namespace negocio
         {
             string imagen;
 
-            if(trainee.ImagenPerfil != null)
+            if(!string.IsNullOrEmpty(trainee.ImagenPerfil))
             {
                 imagen = _directorioImagen + trainee.ImagenPerfil;
             }
