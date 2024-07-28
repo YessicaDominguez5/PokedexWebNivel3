@@ -13,7 +13,14 @@ namespace negocio
             try
             {
                 datos.setearConsulta("Update USERS set ImagenPerfil = @imagen, Nombre = @nombre, Apellido = @apellido, FechaNacimiento = @fecha where Id = @id");
-                datos.setearParametro("@imagen", user.ImagenPerfil);
+
+                /*datos.setearParametro("@imagen", user.ImagenPerfil != null? user.ImagenPerfil : ""); */// si no tengo ninguna imagen cargada y pongo guardar me manda vacío
+               
+                datos.setearParametro("@imagen", user.ImagenPerfil != null ? user.ImagenPerfil : (object)DBNull.Value);
+                // manda o un string o un object
+
+                //datos.setearParametro("@imagen", (object)user.ImagenPerfil ??DBNull.Value); Otra forma: evalúa el user.ImagenPerfil(manda null si tiene null, sino manda lo que tenga user.perfil).
+
                 datos.setearParametro("@nombre", user.Nombre);
                 datos.setearParametro("@apellido", user.Apellido);
                 datos.setearParametro("@id", user.Id);
