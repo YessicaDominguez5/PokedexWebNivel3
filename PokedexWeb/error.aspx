@@ -5,4 +5,5 @@
 
     <h1>Error</h1>
     <asp:Label ID="labelError" runat="server" Text=""></asp:Label>
+    <a href="Default.aspx">Volver al home</a>
 </asp:Content>

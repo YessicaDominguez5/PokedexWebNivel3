@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace dominio
 {
@@ -13,7 +9,7 @@ namespace dominio
         public string Pass { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
-        public DateTime FechaDeNacimiento { get; set; }
+        public DateTime FechaDeNacimiento { get; set; } = new DateTime(1970,1,1);
         public string ImagenPerfil { get; set; }
         public bool Admin { get; set; }
 

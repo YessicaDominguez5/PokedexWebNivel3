@@ -29,7 +29,8 @@ namespace PokedexWeb
                     }
                     if (trainee.FechaDeNacimiento != null)
                     {
-                        txtFechaNacimientoPerfil.Text = trainee.FechaDeNacimiento.ToString("yyyy-MM-dd");
+                        txtFechaNacimientoPerfil.Text =  trainee.FechaDeNacimiento.ToString("yyyy-MM-dd");
+
                     }
 
 
