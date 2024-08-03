@@ -1,6 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="MiPerfil.aspx.cs" Inherits="PokedexWeb.MiPerfil" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .validacion{
+
+            color:red;
+            font-size:12px;
+        }
+
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <hr />
@@ -18,13 +26,14 @@
             <div class="mb-3">
                 <asp:Label ID="labelNombrePerfil" CssClass="form-label" runat="server" Text="Nombre"></asp:Label>
                 <asp:TextBox ID="txtNombrePerfil" CssClass="form-control" runat="server"></asp:TextBox>
+                <asp:RequiredFieldValidator ErrorMessage="El nombre es requerido" CssClass="validacion" ControlToValidate="txtNombrePerfil" runat="server" />
 
             </div>
 
             <div class="mb-3">
                 <asp:Label ID="labelApellidoPerfil" CssClass="form-label" runat="server" Text="Apellido"></asp:Label>
                 <asp:TextBox ID="txtApellidoPerfil" CssClass="form-control" runat="server"></asp:TextBox>
-
+                 <asp:RequiredFieldValidator ErrorMessage="El apellido es requerido" CssClass="validacion" ControlToValidate="txtApellidoPerfil" runat="server" />
             </div>
 
             <div class="mb-3">

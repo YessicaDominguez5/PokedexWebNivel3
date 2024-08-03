@@ -22,25 +22,34 @@ namespace PokedexWeb
             TraineeNegocio negocio = new TraineeNegocio();
             try
             {
-                trainee.Email = txtUser.Text;
-                trainee.Pass = txtPass.Text;
-                if(negocio.Login(trainee) )
+                if (Validacion.validaTextoVacio(txtUser) || Validacion.validaTextoVacio(txtPass))
                 {
-                    Session.Add("trainee", trainee);
-                    Response.Redirect("MiPerfil.aspx",false);
-                }else
-                {
-                    Session.Add("error", "User o password incorrectos");
-                    Response.Redirect("error.aspx", false);
+                    Session.Add("error", "Debes completar ambos campos");
+                    Response.Redirect("error.aspx",false);
                 }
+                else
+                {
 
+                    trainee.Email = txtUser.Text;
+                    trainee.Pass = txtPass.Text;
+                    if (negocio.Login(trainee))
+                    {
+                        Session.Add("trainee", trainee);
+                        Response.Redirect("MiPerfil.aspx",false);
+                    }
+                    else
+                    {
+                        Session.Add("error", "User o password incorrectos");
+                        Response.Redirect("error.aspx");
+                    }
+                }
             }
             catch (Exception ex)
             {
                 Session.Add("error", ex.ToString());
                 Response.Redirect("error.aspx");
 
-            } 
+            }
         }
     }
 }
