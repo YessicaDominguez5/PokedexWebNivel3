@@ -84,10 +84,11 @@ namespace PokedexWeb
 
                 //Para Leer
 
-                Image img = (Image)Master.FindControl("imgAvatar"); //llamar desde Mi Perfil a imgAvatar que esta en la Master(clase padre)
+                    Image img = (Image)Master.FindControl("imgAvatar"); //llamar desde Mi Perfil a imgAvatar que esta en la Master(clase padre)
 
-                img.ImageUrl = "~/Imagenes/" + user.ImagenPerfil;
 
+                    img.ImageUrl = "~/Imagenes/" + user.ImagenPerfil;
+                
                 Response.Redirect("Default.aspx", false);
 
             }

@@ -40,7 +40,7 @@ namespace PokedexWeb
                     else
                     {
                         Session.Add("error", "User o password incorrectos");
-                        Response.Redirect("error.aspx");
+                        Response.Redirect("error.aspx",false);
                     }
                 }
             }
